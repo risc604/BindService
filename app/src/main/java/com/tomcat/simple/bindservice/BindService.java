@@ -7,10 +7,12 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BindService extends Service
 {
+    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     private final IBinder   mBinder = new MyBinder();
     private Handler         handler = new Handler();
     private Runnable        showTime = new Runnable()
@@ -18,8 +20,8 @@ public class BindService extends Service
         @Override
         public void run()
         {
-            Log.i("mylog", new Date().toString());
-            handler.postDelayed(this, 1000);    // 1s
+            Log.i("mylog", sdf.format(new Date()));
+            handler.postDelayed(this, 5000);    // 1s
         }
     };
 
